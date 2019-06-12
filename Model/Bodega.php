@@ -8,14 +8,13 @@ class Bodega extends AppModel
 	private $direccion;
 	private $estatus;
 	
-	function __construct($id, $nombre,$direccion, $estatus)
+	function __construct($id=null, $nombre=null,$direccion=null, $estatus=0)
 	{
 		$this->setId($id);
 		$this->setNombre($nombre);
 		$this->setDireccion($direccion);
 		$this->setEstatus($estatus);
 	}
-
 	public function getId(){
 		return $this->id;
 	}
@@ -49,7 +48,15 @@ class Bodega extends AppModel
 		
 		$this->estatus = $estatus;
 	}
-
+	public static function paginacion(){
+		$sql="select * from bodegas where concat(nombre, ' ',direccion,' ',
+		case
+			when (estatus) = '1' then 'ACTIVO'
+			when (estatus) = '0' then 'INACTIVO'
+		end) ";
+		return parent::paginar($sql);
+	}
+	/*
 	public static function save($bodega){
 		$db=Db::getConnect();
 
@@ -58,8 +65,15 @@ class Bodega extends AppModel
 		$insert->bindValue('direccion',$bodega->getDireccion());
 		$insert->bindValue('estatus',$bodega->getEstatus());
 		$insert->execute();
+	}*/
+	public function save(){
+		$db=Db::getConnect();
+		$insert=$db->prepare('INSERT INTO bodegas VALUES (NULL, :nombre,:direccion,:estatus)');
+		$insert->bindValue('nombre',$this->getNombre());
+		$insert->bindValue('direccion',$this->getDireccion());
+		$insert->bindValue('estatus',$this->getEstatus());
+		$insert->execute();
 	}
-
 	public static function find($query=null){
 		$db=Db::getConnect();
 		$bodegas=[];
@@ -73,7 +87,7 @@ class Bodega extends AppModel
 		}
 		return $bodegas;
 	}
-
+	/*
 	public static function update($bodega){
 		$db=Db::getConnect();
 		$update=$db->prepare('UPDATE bodegas SET nombre=:nombre, direccion=:direccion, estatus=:estatus WHERE id=:id');
@@ -83,7 +97,16 @@ class Bodega extends AppModel
 		$update->bindValue('id',$bodega->getId());
 		$update->execute();
 	}
-
+	*/
+	public function update(){
+		$db=Db::getConnect();
+		$update=$db->prepare('UPDATE bodegas SET nombre=:nombre, direccion=:direccion, estatus=:estatus WHERE id=:id');
+		$update->bindValue('nombre', $this->getNombre());
+		$update->bindValue('direccion',$this->getDireccion());
+		$update->bindValue('estatus',$this->getEstatus());
+		$update->bindValue('id',$this->getId());
+		$update->execute();
+	}
 	public static function delete($id){
 		$db=Db::getConnect();
 		$delete=$db->prepare('DELETE  FROM bodegas WHERE id=:id');

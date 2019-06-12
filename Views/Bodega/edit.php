@@ -1,7 +1,7 @@
 <div class="container">
 	<h2>Actualizar Bodega</h2>
 	<form action="?controller=bodega&action=update" name='form1' id='form1' method="POST" onsubmit="return editBodega()">
-		<input type="hidden" name="id" value="<?php echo $bodega->getId() ?>" >
+		<input type="hidden" name="id" id='id' value="<?php echo $bodega->getId() ?>" >
 		<div class="form-group">
 			<label for="text">Nombres</label>
 			<input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $bodega->getNombre() ?>">

@@ -1,3 +1,8 @@
+<style>
+	table thead tr th{
+		cursor:pointer;
+	}
+	</style>
 <?php
 if(!isset($paginacion)){
     exit();

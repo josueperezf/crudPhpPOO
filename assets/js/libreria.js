@@ -83,21 +83,6 @@ function libAjaxGet(url,divActualizar,callback=null)
 	});
 }
 
-
-/*
-function libAjaxGet(url,divActualizar,callback=null)
-{
-	$.get(url, function( data ) {
-		$( "#"+divActualizar).html( data );
-
-	}).done(function(){
-		if(callback){
-			callback();
-		}
-	});
-
-}
-*/
 function mostrarErrors(e)
 {
 
@@ -150,6 +135,7 @@ function mostrarErrors(e)
 
 
 
+///
 
 function trim(cadena)
 {
@@ -221,16 +207,16 @@ function chequearEnteroPositivo(k){
 
 function chequearLogitud(k,inicio,fin)
 {
-	$('#'+k.id+'').removeClass('is-invalid');
-	$('#'+k.id+'').parent().find('.invalid-feedback').text('');
+	$('#'+k.id+'').removeClass('invalid');
+	$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':""});
 	if((k.value.length>=inicio) && (k.value.length<=fin))
 	{
 		//document.getElementById("mensaje").innerHTML='';
 		return true;
 	}else
 	{
-		$('#'+k.id+'').addClass('is-invalid');
-		$('#'+k.id+'').parent().find('.invalid-feedback').text('Este campo debe contener Minimo '+inicio+', maximo '+fin +' caracteres. Logitud actual '+k.value.length);
+		$('#'+k.id+'').addClass('invalid');
+		$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':'Este campo debe contener Minimo '+inicio+', maximo '+fin +' caracteres. Logitud actual '+k.value.length});
 		k.focus();
 		return false;
 	}
@@ -238,8 +224,8 @@ function chequearLogitud(k,inicio,fin)
 //usado para verificar los campos vacios
 function chequear(k)
 {
-	$('#'+k.id+'').removeClass('is-invalid');
-	$('#'+k.id+'').parent().find('.invalid-feedback').text('');
+	$('#'+k.id+'').removeClass('invalid');
+	$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':""});
 
 	String.prototype.replaceAll = function(search, replacement)
 	{
@@ -271,8 +257,8 @@ function chequear(k)
 	document.getElementById(k.id).value=cadena;
 	if(cadena.length==0)
 	{
-		$('#'+k.id+'').addClass('is-invalid');
-		$('#'+k.id+'').parent().find('.invalid-feedback').text('No debe estar Vacio');
+		$('#'+k.id+'').addClass('invalid');
+		$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':"No puede estar vacio"});
 	 k.focus();
 	 return false;
 	}else{
@@ -280,7 +266,6 @@ function chequear(k)
 		return true;
 	}
 }//fin de funcion chequear
-
 function comparar(k,j)
 {
 	$('#'+k.id+'').removeClass('invalid');
@@ -322,13 +307,13 @@ function chequearEnMinuscula(k)
 //SELECCIONAR ELEMENTOS DE LA LISTA
 function chequearSelect(k)
 {
-	$('#'+k.id+'').removeClass('is-invalid');
-	$('#'+k.id+'').parent().find('.invalid-feedback').text('');
+	$('#'+k.id+'').parent().removeClass('invalid');
+	$('#'+k.id+'').parent().parent().find('.helper-text').attr({'data-error':""});
 	if(k.value==0)
 	{
 		//document.getElementById("mensaje").innerHTML='<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>Lo Sentimos: algun elemento de la lista debe ser seleccionado</div>';
-		$('#'+k.id+'').addClass('is-invalid');
-		$('#'+k.id+'').parent().find('.invalid-feedback').text('Algun elemento de la lista debe ser seleccionado');
+		$('#'+k.id+'').parent().addClass('invalid');
+		$('#'+k.id+'').parent().parent().find('.helper-text').attr({'data-error':"Algun elemento de la lista debe ser seleccionado"});
 	 	k.focus();
 	 	return false;
 		}else{
@@ -393,12 +378,12 @@ function validarEmail(theElement)
 
 function chequearNumero(k)
 {
-	$('#'+k.id+'').removeClass('is-invalid');
-	$('#'+k.id+'').parent().find('.invalid-feedback').text('');
+	$('#'+k.id+'').removeClass('invalid');
+	$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':""});
 	if(k.value<0)
 	{
-		$('#'+k.id+'').addClass('is-invalid');
-		$('#'+k.id+'').parent().find('.invalid-feedback').text('Valor invalido');
+		$('#'+k.id+'').addClass('invalid');
+		$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':"Este campo Invalido"});
 		//document.getElementById("mensaje").innerHTML="<font color='#FF0000'><img src='images/inactivo.PNG' width='14' height='12'>Este campo Invalido</font>";
 		k.focus();
 		return false;
@@ -416,7 +401,6 @@ function buscarPuntos(k)
 	{
 		$('#'+k.id+'').addClass('invalid');
 		$('#'+k.id+'').parent().find('.helper-text').attr({'data-error':"debe poseer Numeros sin puntos."});
-		//document.getElementById("mensaje").innerHTML="<font color='#FF0000'><img src='images/inactivo.PNG' width='14' height='12'>Este campo debe poseer solo Numeros, no puede contener puntos.</font>";
 		k.focus();
 		return false;
 	}
@@ -430,8 +414,6 @@ function ocultar(div)
 {
   		$( "#"+div+"").hide('explode');
 }
-
-
 
 
 function chequearCheckbox()

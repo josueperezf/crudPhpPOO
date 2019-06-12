@@ -36,11 +36,12 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 							<td><?php echo $bodega['id']; ?> </td>
 							<td><?php echo $bodega['nombre']; ?></td>
 							<td><?php echo $bodega['direccion']; ?></td>
-							<td><?php if ( $bodega['estatus']==1):?>
-								Activo
-							<?php  else:?>
-								Inactivo
-							<?php endif; ?></td>
+							<td>
+								<?php if ( $bodega['estatus']==1):?>
+									ACTIVO
+								<?php  else:?>
+									INACTIVO
+								<?php endif; ?></td>
 							<td>
 							<button class="waves-effect waves-light btn modal-trigger"  href="#modal1" onClick="$('.modal').modal();libAjaxGet('correr.php?controller=bodega&action=edit&id=<?php echo $bodega['id'] ?>','divModal',function(){})">
 								Editar
@@ -53,11 +54,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
 				</thead>
 			</table>
-			<style>
-			table thead tr th{
-				cursor:pointer;
-			}
-			</style>
 			<?php
 				require_once('Views/Helpers/paginacion.php');
 			?>

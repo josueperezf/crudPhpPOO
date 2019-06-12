@@ -9,12 +9,7 @@ class BodegaController
 	}
 
 	function index(){
-		$sql="select * from bodegas where concat(nombre, ' ',direccion,' ',
-		case
-			when (estatus) = '1' then 'ACTIVO'
-			when (estatus) = '0' then 'INACTIVO'
-		end) ";
-		$paginacion=Bodega::paginar($sql);
+		$paginacion=Bodega::paginacion();
 		$bodegas=$paginacion['data'];
 		require_once('Views/Bodega/index.php');
 	}
@@ -44,13 +39,12 @@ class BodegaController
 		}
 
 		$bodega= new Bodega(null, $nombre,$direccion,'1');
-		$bodega->save($bodega);
+		$bodega->save();
 		http_response_code(201);
 		//header('Location: '.'?controller=bodega&action=index');
 	}
 
-	function edit(){
-		
+	function edit(){	
 		$id=$_GET['id'];
 		$bodega=Bodega::find("b.id=$id");
 		$bodega=$bodega[0];
@@ -84,7 +78,7 @@ class BodegaController
 			header('Location: '.'correr.php?controller=error&action=noEncontrado');
 			exit();
 		}
-		//busco si el nombre esta repetido
+		//busco si el nombre esta repetido 
 		$bodega=Bodega::find("b.id!=$id and  b.nombre='$nombre'");
 		if(count($bodega)>0){
 			//nombre repetido
@@ -92,7 +86,7 @@ class BodegaController
 			exit();
 		}
 		$bodega = new Bodega($_POST['id'],$nombre,$direccion,$estatus);
-		Bodega::update($bodega);
+		$bodega->update();
 		http_response_code(200);
 		//$this->show();
 		//header('Location: '.'?controller=bodega&action=index');
@@ -118,20 +112,6 @@ class BodegaController
 		$bodega->delete($bodega->getId());
 		//$this->show();
 		header('Location: '.'?controller=bodega&action=index');
-	}
-
-	function search(){
-		if (!empty($_POST['id'])) {
-			$id=$_POST['id'];
-			$bodega=Bodega::find(" b.id=$id");
-			$bodegas=$bodega;
-			//var_dump($id);
-			//die();
-			require_once('Views/Bodega/index.php');
-		} else {
-			$bodegas=Bodega::find();
-			require_once('Views/Bodega/index.php');
-		}
 	}
 }
 ?>
