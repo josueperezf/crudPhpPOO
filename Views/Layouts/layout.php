@@ -5,17 +5,17 @@
     <title>Bodega POO</title>
 
     <!-- Styles -->
-	<link rel="stylesheet" type="text/css" href="assets/css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/toastr.css">
     
     <style>
     .modal { width: 75% !important; height: 75% !important ; }  /* increase the height and width as you desire */
     </style>
-	<script type="text/javascript" src="assets/js/jquery-3.2.1.js"></script>	
-	<script type="text/javascript" src="assets/js/materialize.min.js"></script>	
-	<script type="text/javascript" src="assets/js/toastr.js"></script>	
-	<script type="text/javascript" src="assets/js/libreria.js"></script>	
-	<script type="text/javascript" src="assets/js/js.js"></script>	
+	<script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>	
+	<script type="text/javascript" src="resources/js/materialize.min.js"></script>	
+	<script type="text/javascript" src="resources/js/toastr.js"></script>	
+	<script type="text/javascript" src="resources/js/libreria.js"></script>	
+	<script type="text/javascript" src="resources/js/js.js"></script>	
 </head>
 <body>
 <script>

@@ -2,7 +2,7 @@
     <li>
         <div class="user-view">
             <div class="background" align='center'>
-                <img src="assets/img/usuario.png" alt="" srcset="" width='150px'>
+                <img src="resources/img/usuario.png" alt="" srcset="" width='150px'>
             </div>
             <!--<a href="#user"><img class="circle" src="{{ asset('image/yuna.jpg') }}"></a> -->
             <a href="#">

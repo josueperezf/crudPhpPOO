@@ -19,8 +19,8 @@ class AppModel{
         //esto es solo para esta estructura, xq correr.php no carga layout
         $QUERY_STRING_RUTA=$_SERVER['QUERY_STRING'];
 		$buscaCortar='&action=';
-		$pos = strpos($QUERY_STRING_RUTA, $buscaCortar);
-		if(strpos($QUERY_STRING_RUTA, '&', $pos+1)){
+        $pos = strpos($QUERY_STRING_RUTA, $buscaCortar); 
+		if(@strpos($QUERY_STRING_RUTA, '&', $pos+1)){
 			$desp=strpos($QUERY_STRING_RUTA, '&', $pos+1);
 			$QUERY_STRING_RUTA = substr($QUERY_STRING_RUTA, 0, $desp);
         }

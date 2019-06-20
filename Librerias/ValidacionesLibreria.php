@@ -1,7 +1,7 @@
 <?php
 namespace Librerias;
 class ValidacionesLibreria{
-    public function validacionTotal($arrayRequest=[],$parametros=[])
+    public static function validacionTotal($arrayRequest=[],$parametros=[])
     {
         $data=['errors'=>[]];
         foreach ($parametros as $key => $value) {
@@ -31,7 +31,7 @@ class ValidacionesLibreria{
             return true;
         }
     }
-    public function validar($valor='', $tipos=array(),$rango=array())
+    public static function validar($valor='', $tipos=array(),$rango=array())
     {
         $formatos=array(
             'email'=>FILTER_VALIDATE_EMAIL,
@@ -75,7 +75,7 @@ class ValidacionesLibreria{
         }
         return false;
     }
-    public function mostrarError($variable='',$error=''){
+    public static function mostrarError($variable='',$error=''){
         $data=['errors'=>[]];
         $data['errors'][$variable][]=$variable.': '.$error;
         if(count($data['errors'])>0){

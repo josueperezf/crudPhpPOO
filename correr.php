@@ -1,7 +1,7 @@
 <?php 
 //recibo parametros de la url
-require_once('connection.php');
-require_once('routing.php');
+require_once('Db.php');
+require_once('Routing.php');
 $controller='bodega';
 $action='index';
 $metodo=$_SERVER['REQUEST_METHOD'];
@@ -30,7 +30,7 @@ if (array_key_exists($controller,  $controllers)) {
 
 
 function call($controller, $action){
-	require_once('Controllers/'.$controller.'Controller.php');
+	require_once('Controllers/'.ucfirst($controller).'Controller.php');
 	$nombreControlador=ucfirst($controller.'Controller');
 	//cargar todas las librerias
 	$directorio = 'Librerias';

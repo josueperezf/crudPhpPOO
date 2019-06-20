@@ -68,7 +68,7 @@ class Bodega extends AppModel
 	}*/
 	public function save(){
 		$db=Db::getConnect();
-		$insert=$db->prepare('INSERT INTO bodegas VALUES (NULL, :nombre,:direccion,:estatus)');
+		$insert=$db->prepare('INSERT INTO bodegas (nombre,direccion,estatus)  VALUES ( :nombre,:direccion,:estatus)');
 		$insert->bindValue('nombre',$this->getNombre());
 		$insert->bindValue('direccion',$this->getDireccion());
 		$insert->bindValue('estatus',$this->getEstatus());
